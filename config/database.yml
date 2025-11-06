@@ -22,7 +22,6 @@ test:
   adapter: sqlite3 # 追加
   database: storage/test.sqlite3
 
-
 # SQLite3 write its data on the local filesystem, as such it requires
 # persistent disks. If you are deploying to a managed service, you should
 # make sure it provides disk persistence, as many don't.
@@ -33,5 +32,5 @@ production:
   <<: *default
   adapter: postgresql # 追加
   encoding: unicode # 追加
-  url: <%= ENV["postgresql://neondb_owner:npg_jEA6XDs9iaVP@ep-rough-art-a1a9sgtt-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"] %> # 追加
+  url: <%= ENV["DATABASE_URL"] %> # 追加
   # database: path/to/persistent/storage/production.sqlite3
