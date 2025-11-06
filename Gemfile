@@ -58,7 +58,7 @@ group :test do
   gem "selenium-webdriver"
 end
 gem 'devise'
-gem 'carrierwave' , '~> 1.3' ,  '>= 1.3.1'
+gem 'carrierwave' , '~> 2.2'
 gem 'cloudinary'
 gem 'sass-rails'
 # PostgreSQL → 本番用
