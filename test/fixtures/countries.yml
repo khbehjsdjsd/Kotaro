@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  locate: MyString
+  date: 2025-10-09 18:18:46
+  charm: MyString
+
+two:
+  locate: MyString
+  date: 2025-10-09 18:18:46
+  charm: MyString

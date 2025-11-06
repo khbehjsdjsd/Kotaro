@@ -1,0 +1,27 @@
+<h1>GeekTwitter</h1>
+<h3>CountryC詳細</h3>
+<div class="country">
+  <p><%= @country.body %></p>
+  <p><%= @country.created_at %></p>
+    <% if user_signed_in? %>
+      <% if current_user.already_liked?(@country) %>
+        <%= button_to country_like_path(id: @country.id, country_id: @country.id), data: { turbo_method: :delete } do %>
+           <i class="fas fa-heart"></i><%= @country.likes.count %>
+        <% end %>
+      <% else %>
+        <%= button_to country_likes_path(id:@country.id, country_id: @country.id)), data: { turbo_method: :post  } do %>
+           <i class="far fa-heart"></i><%= @country.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+       <i class="far fa-heart"></i><%= @country.likes.count %>
+    <% end %>
+  <%= link_to "編集する", edit_country_path(@country.id) %>
+</div>
+
+<h2>いいねしたユーザー</h2>
+<% @country.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+
+<%= link_to "Tweet一覧に戻る", country_path %>

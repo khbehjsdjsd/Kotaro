@@ -1,0 +1,101 @@
+<h3>Country一覧</h3>
+
+<div class="countries-container">
+  <% @countries.each do |t| %>
+    <div class="country">
+      <p><strong>場所：</strong><%= t.locate %></p>
+      <p><strong>日付：</strong><%= t.date %></p>
+      <p><strong>魅力：</strong><%= t.charm %></p>
+      <p><strong>投稿者：</strong><%= t.user.email %></p>
+      <%= image_tag t.image_url if t.image_url.present? %>
+      
+      <button class="like-btn">♡ いいね</button>
+      <%# --- いいね機能 --- %>
+      <% if user_signed_in? %>
+        <% if current_user.already_liked?(t) %>
+          <%= link_to country_like_path(t), method: :delete do %>
+            <i class="fas fa-heart"></i> <%= t.likes.count %>
+          <% end %>
+        <% else %>
+          <%= link_to country_likes_path(t), method: :post do %>
+            <i class="far fa-heart"></i> <%= t.likes.count %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <i class="far fa-heart"></i> <%= t.likes.count %>
+      <% end %>
+
+      <div class="country">
+        <div class="main-box">
+          <div class="left-container">
+            <%= t.body %>
+          </div>
+          <div class="right-container">
+            <%= link_to "詳細へ", country_path(t) %><br>
+            <% if user_signed_in? && current_user == t.user %>
+              <%= link_to "編集する", edit_country_path(t) %><br>
+              <%= link_to "削除する", country_path(t), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            <% end %>
+          </div>
+        </div>
+        <p class="time"><%= l(t.created_at, format: :short) %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h3>投稿を検索</h3>
+<%= form_tag(countries_path, method: :get) do %>
+  <%= text_field_tag :search, params[:search], placeholder: "キーワードを入力" %>
+  <%= submit_tag '検索する' %>
+<% end %>
+
+<section class="travel-section">
+<h2>魅力的な目的地を発見</h2>
+
+<div class="travel-grid">
+<div class="travel-card">
+<img src="YOUR_IMAGE_URL_1" alt="観光地1">
+<div class="travel-text">
+<h3>ベトナム・ホイアン</h3>
+<p>旧市街は夜になると60万個のランタンで彩られ、幻想的な雰囲気に包まれます。</p>
+<a href="#">詳細はこちら</a>
+</div>
+</div>
+
+<div class="travel-card">
+<img src="YOUR_IMAGE_URL_2" alt="観光地2">
+<div class="travel-text">
+<h3>インドネシア・バリ島</h3>
+<p>豊かな自然と寺院文化が魅力。リラックスできるリゾート地として人気です。</p>
+<a href="#">詳細はこちら</a>
+</div>
+</div>
+
+<div class="travel-card">
+<img src="YOUR_IMAGE_URL_3" alt="観光地3">
+<div class="travel-text">
+<h3>韓国・京都寺院</h3>
+<p>文化と歴史を感じられる、落ち着いた観光体験ができます。</p>
+<a href="#">詳細はこちら</a>
+</div>
+</div>
+</div>
+</section>
+
+
+<h1>海外旅行へ行こう</h1>
+<style>
+h1 {
+  color: black;
+  background-color: light blue
+  font-size: 10px;
+  font-family: sans-serif;
+  width: 50%
+}
+<style>
+
+
+
+
+

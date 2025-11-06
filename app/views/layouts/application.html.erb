@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geeektwitter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
+ </head>
+
+ <body>
+   <header>
+<h1>GeekCountry</h1>
+     <div class="header-list">
+     <ul>
+       <li><%= link_to "ホーム", countries_path %></li>
+       <li><%= link_to "新規投稿",new_country_path %></li>
+      
+    </ul>
+    </div>
+  </header>
+  <main>
+     <%= yield %>
+    </main>
+  </body>
+</html>
+
+ <footer>
+   <p>Copyright © GeekSalon All Rights Reserved.</p>
+ </footer>
+ <ul>
+
+  </ul>
+
+   <footer>
+     <p>Copyright © GeekSalon All Rights Reserved.</p>
+    </footer>
